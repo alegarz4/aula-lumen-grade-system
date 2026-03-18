@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluación Docente Pro</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2563eb">
+
+<style>
+body{font-family:Arial;margin:0;background:#f5f7fa;}
+header{background:#2563eb;color:white;padding:15px;font-weight:bold;}
+main{padding:15px;max-width:1200px;margin:auto;}
+.card{background:white;padding:15px;border-radius:12px;margin-bottom:15px;}
+input,select{padding:8px;margin:5px;width:100%;}
+button{padding:10px;background:#2563eb;color:white;border:none;border-radius:8px;margin-top:10px;}
+table{width:100%;border-collapse:collapse;margin-top:10px;}
+td,th{border:1px solid #ddd;padding:8px;}
+</style>
+</head>
+
+<body>
+
+<header>📊 Evaluación Trimestral Inteligente</header>
+
+<main>
+
+<div class="card">
+<h3>Agregar alumno</h3>
+<input id="nombre" placeholder="Nombre">
+<button onclick="agregarAlumno()">Agregar</button>
+</div>
+
+<div class="card">
+<h3>Registro académico</h3>
+
+<select id="tipo">
+<option value="actividad">Actividad</option>
+<option value="examen">Examen</option>
+</select>
+
+<input type="date" id="fecha">
+<input type="number" id="valor" placeholder="Calificación (0-100)">
+<select id="alumnoSelect"></select>
+
+<button onclick="registrar()">Guardar</button>
+</div>
+
+<div class="card">
+<h3>Asistencia</h3>
+<select id="asistenciaAlumno"></select>
+<select id="asistenciaTipo">
+<option value="P">Presente</option>
+<option value="F">Falta</option>
+<option value="R">Retardo</option>
+</select>
+<button onclick="guardarAsistencia()">Guardar</button>
+</div>
+
+<div class="card">
+<h3>Conducta</h3>
+<select id="conductaAlumno"></select>
+<select id="conductaTipo">
+<option value="E">Excelente</option>
+<option value="B">Buena</option>
+<option value="R">Regular</option>
+<option value="M">Mala</option>
+<option value="G">Grave</option>
+</select>
+<button onclick="guardarConducta()">Guardar</button>
+</div>
+
+<div class="card">
+<h3>Resultados</h3>
+<table id="tabla"></table>
+</div>
+
+</main>
+
+<script>
+let alumnos = JSON.parse(localStorage.getItem("alumnos")||"[]");
+
+function guardar(){ localStorage.setItem("alumnos",JSON.stringify(alumnos)); }
+
+function agregarAlumno(){
+let n=document.getElementById("nombre").value;
+if(!n) return;
+
+alumnos.push({
+nombre:n,
+actividades:[],
+examenes:[],
+faltas:0,
+retardos:0,
+conductas:[]
+});
+
+guardar();
+render();
+}
+
+function registrar(){
+let idx=document.getElementById("alumnoSelect").value;
+let tipo=document.getElementById("tipo").value;
+let valor=parseFloat(document.getElementById("valor").value);
+
+if(tipo==="actividad") alumnos[idx].actividades.push(valor);
+else alumnos[idx].examenes.push(valor);
+
+guardar();
+render();
+}
+
+function guardarAsistencia(){
+let idx=document.getElementById("asistenciaAlumno").value;
+let tipo=document.getElementById("asistenciaTipo").value;
+
+if(tipo==="F") alumnos[idx].faltas++;
+if(tipo==="R") alumnos[idx].retardos++;
+
+guardar();
+render();
+}
+
+function guardarConducta(){
+let idx=document.getElementById("conductaAlumno").value;
+let tipo=document.getElementById("conductaTipo").value;
+
+alumnos[idx].conductas.push(tipo);
+
+guardar();
+render();
+}
+
+function promedio(arr){
+if(arr.length===0) return 0;
+return arr.reduce((a,b)=>a+b)/arr.length;
+}
+
+function calcular(a){
+
+const BASE=5;
+
+let act=promedio(a.actividades)/100*3;
+let exa=promedio(a.examenes)/100*1;
+
+// participación por asistencia
+let total=20; // puedes cambiar por días reales
+let penal=(a.faltas + a.retardos*0.5);
+let part=0.5*(1-(penal/total));
+
+// conducta
+let cond=0.5;
+a.conductas.forEach(c=>{
+if(c==="R") cond-=0.1;
+if(c==="M") cond-=0.2;
+if(c==="G") cond-=0.3;
+});
+
+cond=Math.max(0,cond);
+
+let final=BASE+act+exa+part+cond;
+return final.toFixed(1);
+}
+
+function render(){
+
+let sel=document.getElementById("alumnoSelect");
+let sel2=document.getElementById("asistenciaAlumno");
+let sel3=document.getElementById("conductaAlumno");
+
+sel.innerHTML=sel2.innerHTML=sel3.innerHTML="";
+
+alumnos.forEach((a,i)=>{
+let op=`<option value="${i}">${a.nombre}</option>`;
+sel.innerHTML+=op;
+sel2.innerHTML+=op;
+sel3.innerHTML+=op;
+});
+
+let tabla=document.getElementById("tabla");
+tabla.innerHTML="<tr><th>Nombre</th><th>Final</th></tr>";
+
+alumnos.forEach(a=>{
+tabla.innerHTML+=`<tr>
+<td>${a.nombre}</td>
+<td>${calcular(a)}</td>
+</tr>`;
+});
+}
+
+render();
+
+if('serviceWorker' in navigator){
+navigator.serviceWorker.register('service-worker.js');
+}
+</script>
+
+</body>
+</html>
