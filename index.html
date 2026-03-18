@@ -3,167 +3,167 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Aula Lumen - Evaluación Docente</title>
+  <title>Pase de lista + Evaluación</title>
 
   <style>
     :root{
-      --bg1:#eef4ff;
-      --bg2:#f8fbff;
+      --bg:#eef2f7;
       --card:#ffffff;
-      --line:#dbe7ff;
-      --text:#183153;
-      --muted:#6b7a90;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --line:#e5e7eb;
       --brand:#2f6fed;
-      --brand2:#5aa9ff;
+      --brand-dark:#1e40af;
+      --soft:#f8fafc;
       --ok:#16a34a;
       --warn:#f59e0b;
       --bad:#dc2626;
-      --soft:#f3f7ff;
-      --shadow:0 10px 30px rgba(47,111,237,.10);
+      --info:#2563eb;
+      --purple:#7c3aed;
+      --shadow:0 10px 24px rgba(15,23,42,.06);
       --radius:18px;
     }
 
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
     body{
-      font-family: "Segoe UI", Arial, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
+      background:var(--bg);
       color:var(--text);
-      background:
-        radial-gradient(circle at top left, #dbeafe 0%, transparent 30%),
-        radial-gradient(circle at top right, #e0f2fe 0%, transparent 28%),
-        linear-gradient(180deg, var(--bg1), var(--bg2));
     }
 
-    .app{
-      max-width: 1220px;
-      margin: 0 auto;
-      padding: 16px;
-    }
-
-    .hero{
-      background: linear-gradient(135deg, var(--brand), var(--brand2));
+    header{
+      background:linear-gradient(135deg,var(--brand),#3b82f6);
       color:#fff;
-      border-radius: 24px;
-      padding: 18px 20px;
-      box-shadow: var(--shadow);
+      padding:18px 20px;
+      box-shadow:0 6px 18px rgba(47,111,237,.18);
+    }
+
+    .header-wrap{
+      max-width:1280px;
+      margin:0 auto;
       display:flex;
+      align-items:flex-start;
       justify-content:space-between;
-      align-items:center;
       gap:16px;
       flex-wrap:wrap;
     }
 
-    .hero h1{
+    .title{
+      font-size:20px;
+      font-weight:800;
       margin:0;
-      font-size: clamp(22px, 3vw, 30px);
-      font-weight: 800;
-      letter-spacing:.2px;
     }
 
-    .hero p{
-      margin:6px 0 0 0;
-      opacity:.95;
+    .subtitle{
+      margin-top:4px;
+      font-size:12px;
+      opacity:.96;
+    }
+
+    .header-right{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .save-pill{
+      background:#fff;
+      color:#374151;
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:800;
+      box-shadow:0 4px 12px rgba(0,0,0,.08);
       font-size:14px;
     }
 
-    .hero-badges{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-
-    .badge{
-      background: rgba(255,255,255,.18);
-      border:1px solid rgba(255,255,255,.25);
-      border-radius:999px;
-      padding:8px 12px;
-      font-size:13px;
+    .top-count{
+      font-size:14px;
       font-weight:700;
-      white-space:nowrap;
     }
 
-    .layout{
-      display:grid;
-      grid-template-columns: 380px 1fr;
-      gap:16px;
-      margin-top:16px;
-      align-items:start;
+    main{
+      max-width:1280px;
+      margin:20px auto;
+      padding:0 16px 28px;
     }
 
-    @media (max-width: 980px){
-      .layout{grid-template-columns:1fr}
-    }
-
-    .panel{
+    .card{
       background:var(--card);
       border:1px solid var(--line);
-      border-radius:var(--radius);
+      border-radius:22px;
       box-shadow:var(--shadow);
-      padding:16px;
+      padding:18px;
+      margin-bottom:18px;
     }
 
     .section-title{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:12px;
-    }
-
-    .section-title h2{
-      margin:0;
       font-size:18px;
+      font-weight:800;
+      margin:0 0 14px 0;
     }
 
-    .small-note{
-      color:var(--muted);
-      font-size:12px;
-    }
-
-    .form-grid{
+    .row{
       display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
     }
 
-    .form-grid-3{
+    .row3{
       display:grid;
-      grid-template-columns:1fr 1fr 1fr;
-      gap:10px;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
     }
 
-    .form-grid-4{
+    .row4{
       display:grid;
-      grid-template-columns:1fr 1fr 1fr 1fr;
-      gap:10px;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
     }
 
-    @media (max-width:780px){
-      .form-grid,
-      .form-grid-3,
-      .form-grid-4{
-        grid-template-columns:1fr;
-      }
+    .row5{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:12px;
+    }
+
+    @media (max-width:1080px){
+      .row4,.row5{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width:700px){
+      .row,.row3,.row4,.row5{grid-template-columns:1fr}
+      header{padding:16px}
+      main{padding:0 12px 22px}
     }
 
     label{
       display:block;
       font-size:12px;
-      font-weight:700;
       color:var(--muted);
       margin:2px 0 6px;
+      font-weight:700;
     }
 
-    input, select, textarea{
+    input[type="text"],
+    input[type="date"],
+    input[type="month"],
+    input[type="number"],
+    select,
+    textarea{
       width:100%;
       border:1px solid var(--line);
-      background:#fff;
-      color:var(--text);
       border-radius:14px;
-      padding:12px 12px;
+      padding:12px 14px;
       font-size:15px;
+      background:#fff;
       outline:none;
-      transition:.18s ease;
+    }
+
+    input:focus, select:focus, textarea:focus{
+      border-color:#93c5fd;
+      box-shadow:0 0 0 4px rgba(59,130,246,.12);
     }
 
     textarea{
@@ -172,141 +172,106 @@
       line-height:1.45;
     }
 
-    input:focus, select:focus, textarea:focus{
-      border-color:var(--brand2);
-      box-shadow:0 0 0 4px rgba(90,169,255,.16);
-    }
-
-    .btn-row{
+    .btns{
       display:flex;
-      flex-wrap:wrap;
       gap:10px;
+      flex-wrap:wrap;
       margin-top:12px;
     }
 
     button{
       border:0;
       border-radius:14px;
-      padding:12px 14px;
-      font-size:14px;
+      padding:12px 16px;
       font-weight:800;
       cursor:pointer;
-      transition:.16s ease;
+      font-size:14px;
     }
 
-    button:hover{transform:translateY(-1px)}
     button.primary{
-      background:linear-gradient(135deg, var(--brand), var(--brand2));
+      background:#2f6fed;
       color:#fff;
     }
+
     button.secondary{
-      background:#edf4ff;
-      color:var(--brand);
-      border:1px solid #d6e6ff;
+      background:#0f172a;
+      color:#fff;
     }
+
+    button.light{
+      background:#eef2f7;
+      color:#111827;
+    }
+
     button.success{
-      background:#eaf8ef;
+      background:#ecfdf3;
       color:var(--ok);
-      border:1px solid #cdeed8;
+      border:1px solid #bbf7d0;
     }
+
+    button.warn{
+      background:#fff7ed;
+      color:#c2410c;
+      border:1px solid #fed7aa;
+    }
+
     button.danger{
-      background:#fff1f2;
+      background:#fef2f2;
       color:var(--bad);
-      border:1px solid #ffd5db;
+      border:1px solid #fecaca;
     }
 
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(4, 1fr);
-      gap:12px;
-      margin-top:16px;
-    }
-
-    @media (max-width:900px){
-      .stats{grid-template-columns:repeat(2,1fr)}
-    }
-
-    @media (max-width:520px){
-      .stats{grid-template-columns:1fr}
-    }
-
-    .stat{
-      background:linear-gradient(180deg, #fff, #f9fbff);
-      border:1px solid var(--line);
-      border-radius:16px;
-      padding:14px;
-    }
-
-    .stat .k{
-      color:var(--muted);
+    .hint{
       font-size:12px;
-      margin-bottom:6px;
-      font-weight:700;
+      color:var(--muted);
+      margin-top:10px;
+      line-height:1.45;
     }
 
-    .stat .v{
-      font-size:28px;
-      font-weight:900;
-      line-height:1;
-    }
-
-    .tabs{
+    .tags{
       display:flex;
       gap:8px;
       flex-wrap:wrap;
-      margin-bottom:14px;
-    }
-
-    .tab-btn{
-      background:#eff5ff;
-      color:#31558f;
-      border:1px solid #d7e6ff;
-      padding:10px 14px;
-      border-radius:999px;
-      font-weight:800;
-    }
-
-    .tab-btn.active{
-      background:linear-gradient(135deg, var(--brand), var(--brand2));
-      color:#fff;
-      border-color:transparent;
-    }
-
-    .tab-content{display:none}
-    .tab-content.active{display:block}
-
-    .summary-box{
-      background:var(--soft);
-      border:1px dashed #c7dafd;
-      border-radius:16px;
-      padding:12px;
-      color:#4e6486;
-      font-size:13px;
-      line-height:1.5;
       margin-top:12px;
     }
 
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      border:1px solid transparent;
+      background:#fff;
+    }
+
+    .tag.ok{color:var(--ok); border-color:#bbf7d0; background:#f0fdf4}
+    .tag.bad{color:var(--bad); border-color:#fecaca; background:#fef2f2}
+    .tag.warn{color:var(--warn); border-color:#fde68a; background:#fffbeb}
+    .tag.info{color:var(--info); border-color:#bfdbfe; background:#eff6ff}
+    .tag.purple{color:var(--purple); border-color:#ddd6fe; background:#f5f3ff}
+
     .table-wrap{
+      margin-top:14px;
       overflow:auto;
       border:1px solid var(--line);
-      border-radius:16px;
+      border-radius:18px;
       background:#fff;
     }
 
     table{
       width:100%;
       border-collapse:collapse;
-      min-width:980px;
+      min-width:1050px;
     }
 
     thead th{
-      background:#f4f8ff;
-      color:#35507f;
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.4px;
-      padding:12px 10px;
+      background:#f3f4f6;
       text-align:left;
+      padding:14px 12px;
+      font-size:13px;
       border-bottom:1px solid var(--line);
       position:sticky;
       top:0;
@@ -314,707 +279,1060 @@
     }
 
     tbody td{
-      padding:12px 10px;
-      border-bottom:1px solid #edf3ff;
-      font-size:14px;
+      padding:12px;
+      border-bottom:1px solid #f1f5f9;
       vertical-align:top;
+      font-size:14px;
     }
 
-    tbody tr:hover{
-      background:#fbfdff;
-    }
+    tbody tr:last-child td{border-bottom:0}
 
-    .name{
+    .student-name{
       font-weight:800;
-      color:#183153;
     }
 
-    .mini{
+    .mini-select{
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid var(--line);
       font-size:12px;
-      color:var(--muted);
-      margin-top:4px;
+      width:100%;
+      background:#fff;
     }
 
-    .pill{
+    .mini-input{
+      width:100%;
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid var(--line);
+      font-size:12px;
+    }
+
+    .status-badge{
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       padding:6px 10px;
-      border-radius:999px;
+      min-width:44px;
+      border-radius:12px;
       font-size:12px;
       font-weight:800;
-      white-space:nowrap;
     }
 
-    .pill.ok{background:#eaf8ef;color:var(--ok)}
-    .pill.warn{background:#fff7e8;color:var(--warn)}
-    .pill.bad{background:#fff1f2;color:var(--bad)}
-    .pill.info{background:#edf4ff;color:var(--brand)}
+    .b-ok{background:#f0fdf4;color:var(--ok)}
+    .b-warn{background:#fffbeb;color:#b45309}
+    .b-bad{background:#fef2f2;color:var(--bad)}
+    .b-info{background:#eff6ff;color:var(--info)}
+    .b-purple{background:#f5f3ff;color:var(--purple)}
 
-    .score{
-      font-size:18px;
-      font-weight:900;
-      border-radius:12px;
-      padding:8px 10px;
+    .footer-note{
+      margin-top:12px;
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .bottom-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+
+    @media (max-width:980px){
+      .bottom-grid{grid-template-columns:1fr}
+    }
+
+    .divider{
+      border:0;
+      border-top:1px solid var(--line);
+      margin:16px 0;
+    }
+
+    .eval-table{
+      min-width:900px;
+    }
+
+    .score-pill{
       display:inline-block;
-      min-width:58px;
+      padding:7px 12px;
+      border-radius:12px;
+      font-weight:900;
+      min-width:56px;
       text-align:center;
     }
 
-    .s-high{background:#eaf8ef;color:var(--ok)}
-    .s-mid{background:#fff7e8;color:#b45309}
-    .s-low{background:#fff1f2;color:var(--bad)}
+    .score-high{background:#ecfdf3;color:#15803d}
+    .score-mid{background:#fffbeb;color:#b45309}
+    .score-low{background:#fef2f2;color:#b91c1c}
 
-    .muted{
+    .soft-box{
+      border:1px dashed #cbd5e1;
+      background:#f8fafc;
+      border-radius:16px;
+      padding:12px;
+      font-size:12px;
       color:var(--muted);
+      line-height:1.45;
     }
 
-    .footer-space{height:20px}
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:14px;
+    }
+
+    @media (max-width:900px){
+      .stats{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media (max-width:560px){
+      .stats{grid-template-columns:1fr}
+    }
+
+    .stat{
+      background:#f8fafc;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px;
+    }
+
+    .stat .k{
+      font-size:12px;
+      color:var(--muted);
+      margin-bottom:6px;
+      font-weight:700;
+    }
+
+    .stat .v{
+      font-size:26px;
+      font-weight:900;
+    }
   </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
 <body>
-  <div class="app">
-    <section class="hero">
+<header>
+  <div class="header-wrap">
+    <div>
+      <div class="title">✅ Pase de lista (Asistencia + Conducta)</div>
+      <div class="subtitle">Guarda por grupo/turno/fecha • Exporta a CSV y Excel mensual • Incluye evaluación trimestral</div>
+    </div>
+    <div class="header-right">
+      <span class="save-pill" id="saveIndicator">💾 Listo</span>
+      <span class="top-count" id="summaryTop">0 alumnos</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="card">
+    <h2 class="section-title">1) Datos y lista de asistencia</h2>
+
+    <div class="row4">
       <div>
-        <h1>📘 Aula Lumen · Evaluación Docente</h1>
-        <p>Base oficial 5 + 5 puntos por encuadre: actividades, participación, conducta y exámenes.</p>
+        <label>Fecha</label>
+        <input type="date" id="dateInput">
       </div>
-      <div class="hero-badges">
-        <span class="badge">Actividades 60%</span>
-        <span class="badge">Participación 10%</span>
-        <span class="badge">Conducta 10%</span>
-        <span class="badge">Exámenes 20%</span>
-      </div>
-    </section>
 
-    <section class="stats">
-      <div class="stat">
-        <div class="k">Alumnos del grupo</div>
-        <div class="v" id="statAlumnos">0</div>
+      <div>
+        <label>Grado</label>
+        <select id="gradeSelect">
+          <option value="1°">1°</option>
+          <option value="2°">2°</option>
+          <option value="3°">3°</option>
+        </select>
       </div>
-      <div class="stat">
-        <div class="k">Promedio grupal</div>
-        <div class="v" id="statPromedio">0.0</div>
-      </div>
-      <div class="stat">
-        <div class="k">Faltas acumuladas</div>
-        <div class="v" id="statFaltas">0</div>
-      </div>
-      <div class="stat">
-        <div class="k">Retardos acumulados</div>
-        <div class="v" id="statRetardos">0</div>
-      </div>
-    </section>
 
-    <section class="layout">
-      <aside class="panel">
-        <div class="section-title">
-          <h2>⚙️ Configuración</h2>
-          <span class="small-note">Guardado automático</span>
-        </div>
+      <div>
+        <label>Grupo</label>
+        <select id="groupSelect">
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+          <option value="F">F</option>
+          <option value="G">G</option>
+          <option value="H">H</option>
+        </select>
+      </div>
 
-        <div class="form-grid">
-          <div>
-            <label>Grado</label>
-            <select id="gradoFiltro">
-              <option value="1">1°</option>
-              <option value="2">2°</option>
-              <option value="3">3°</option>
-            </select>
-          </div>
-          <div>
-            <label>Grupo</label>
-            <select id="grupoFiltro">
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="D">D</option>
-              <option value="F">F</option>
-              <option value="G">G</option>
-              <option value="H">H</option>
-            </select>
-          </div>
-        </div>
+      <div>
+        <label>Turno</label>
+        <select id="shiftSelect">
+          <option value="Matutino">Matutino</option>
+          <option value="Vespertino">Vespertino</option>
+          <option value="Jornada ampliada">Jornada ampliada</option>
+        </select>
+      </div>
+    </div>
 
-        <div style="margin-top:14px">
-          <label>Pegar lista de alumnos</label>
-          <textarea id="listaMasiva" placeholder="Formato sugerido:
+    <div class="row3" style="margin-top:12px">
+      <div>
+        <label>Materia (opcional)</label>
+        <input type="text" id="subjectInput" placeholder="Ej: Inglés / Matemáticas">
+      </div>
+      <div>
+        <label>Clave del grupo (auto)</label>
+        <input type="text" id="groupKeyPreview" disabled>
+      </div>
+      <div>
+        <label>Mes para Excel (mensual)</label>
+        <input type="month" id="monthInput">
+      </div>
+    </div>
+
+    <div class="row" style="margin-top:12px">
+      <div>
+        <label>Buscar alumno</label>
+        <input type="text" id="searchInput" placeholder="Escribe un nombre...">
+      </div>
+      <div>
+        <label>Mostrar</label>
+        <select id="filterStatus">
+          <option value="ALL">Todos</option>
+          <option value="P">Presentes</option>
+          <option value="F">Faltas</option>
+          <option value="R">Retardos</option>
+          <option value="J">Justificados</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="btns">
+      <button class="primary" id="loadSessionBtn" type="button">Cargar este grupo/fecha</button>
+      <button class="light" id="newSessionBtn" type="button">Nuevo (vacío)</button>
+      <button class="primary" id="allPresentBtn" type="button">Marcar todos presentes</button>
+      <button class="light" id="clearDayBtn" type="button">Limpiar día</button>
+      <button class="secondary" id="exportBtn" type="button">Exportar CSV (día)</button>
+      <button class="secondary" id="exportMonthlyXlsxBtn" type="button">Exportar Excel (mes)</button>
+    </div>
+
+    <div class="tags">
+      <span>Asistencia:</span>
+      <span class="tag ok">Presente</span>
+      <span class="tag bad">Falta</span>
+      <span class="tag warn">Retardo</span>
+      <span class="tag info">Justificado</span>
+    </div>
+
+    <div class="tags">
+      <span>Conducta:</span>
+      <span class="tag ok">E Excelente</span>
+      <span class="tag info">B Buena</span>
+      <span class="tag warn">R Regular</span>
+      <span class="tag bad">M Mala</span>
+      <span class="tag purple">G Grave</span>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th style="width:46px">#</th>
+            <th>Alumno</th>
+            <th style="width:250px">Asistencia</th>
+            <th style="width:170px">Conducta</th>
+            <th style="width:240px">Notas (opcional)</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="footer-note" id="summaryBottom"></div>
+  </section>
+
+  <div class="bottom-grid">
+    <section class="card">
+      <h2 class="section-title">2) Cargar alumnos</h2>
+
+      <label>Opción A: Pegar lista (uno por línea)</label>
+      <textarea id="namesTextarea" placeholder="Ej:
 1A Ana López
-1A Juan Pérez
-1B María García
-3H Carlos Díaz"></textarea>
+1A Bruno García
+1B Camila Hernández
+3H Sofía Díaz"></textarea>
+
+      <div class="btns">
+        <button class="secondary" id="loadFromTextBtn" type="button">Cargar lista</button>
+        <button class="light" id="demoBtn" type="button">Usar ejemplo</button>
+      </div>
+
+      <hr class="divider">
+
+      <label>Opción B: Cargar CSV</label>
+      <input type="file" id="csvFile" accept=".csv,text/csv" />
+
+      <div class="hint">
+        Formato recomendado del CSV: una columna con encabezado <b>nombre</b> o <b>Nombre</b>.<br>
+        Si quieres, también puedes pegar todo directo arriba con formato <b>1A Nombre Apellido</b>.
+      </div>
+
+      <div class="btns">
+        <button class="light" id="loadCsvBtn" type="button">Cargar CSV</button>
+      </div>
+
+      <hr class="divider">
+
+      <h2 class="section-title">3) Guardado</h2>
+      <div class="hint">
+        Se guarda automáticamente por <b>Fecha + Grado + Grupo + Turno</b>.<br>
+        El Excel mensual junta todos los días del mes seleccionado para ese mismo grupo/turno.<br>
+        La evaluación trimestral usa la misma base de alumnos.
+      </div>
+
+      <div class="btns">
+        <button class="light" id="saveBtn" type="button">Guardar ahora</button>
+        <button class="danger" id="resetAllBtn" type="button">Borrar TODO</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="section-title">4) Evaluación trimestral</h2>
+
+      <div class="row4">
+        <div>
+          <label>Fecha de actividad/examen</label>
+          <input type="date" id="evalDateInput">
         </div>
-
-        <div class="btn-row">
-          <button class="primary" id="btnCargarLista">Cargar lista</button>
-          <button class="secondary" id="btnEjemplo">Ejemplo</button>
-          <button class="danger" id="btnBorrarGrupo">Borrar grupo actual</button>
+        <div>
+          <label>Tipo</label>
+          <select id="evalTypeSelect">
+            <option value="actividad">Actividad</option>
+            <option value="examen">Examen</option>
+          </select>
         </div>
-
-        <div class="summary-box">
-          Puedes pegar muchos alumnos a la vez. El sistema detecta el <b>grado</b> y el <b>grupo</b> desde la clave inicial, por ejemplo: <b>1A</b>, <b>3H</b>, <b>2G</b>.
-        </div>
-
-        <hr style="border:none;border-top:1px solid var(--line);margin:16px 0">
-
-        <div class="section-title">
-          <h2>👤 Alumno seleccionado</h2>
-        </div>
-
         <div>
           <label>Alumno</label>
-          <select id="alumnoSelect"></select>
+          <select id="evalStudentSelect"></select>
         </div>
-
-        <div class="form-grid-3" style="margin-top:10px">
-          <div>
-            <label>Tipo</label>
-            <select id="tipoRegistro">
-              <option value="actividad">Actividad</option>
-              <option value="examen">Examen</option>
-            </select>
-          </div>
-          <div>
-            <label>Fecha</label>
-            <input type="date" id="fechaRegistro">
-          </div>
-          <div>
-            <label>Calificación</label>
-            <input type="number" id="valorRegistro" min="0" max="100" placeholder="0 a 100">
-          </div>
+        <div>
+          <label>Calificación</label>
+          <input type="number" id="evalScoreInput" min="0" max="100" placeholder="0 a 100">
         </div>
+      </div>
 
-        <div class="btn-row">
-          <button class="primary" id="btnGuardarRegistro">Guardar actividad/examen</button>
+      <div class="btns">
+        <button class="primary" id="saveEvalBtn" type="button">Guardar actividad / examen</button>
+      </div>
+
+      <div class="soft-box" style="margin-top:12px">
+        <b>Encuadre:</b> actividades 60% = 3.0 pts · participación 10% = 0.5 pts · conducta 10% = 0.5 pts · exámenes 20% = 1.0 pt.<br>
+        <b>Fórmula:</b> calificación final = <b>5</b> + puntos obtenidos del encuadre.
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="k">Promedio grupal</div>
+          <div class="v" id="evalAvgGroup">0.0</div>
         </div>
-
-        <div class="form-grid" style="margin-top:12px">
-          <div>
-            <label>Asistencia</label>
-            <select id="asistenciaSelect">
-              <option value="P">Presente</option>
-              <option value="F">Falta</option>
-              <option value="R">Retardo</option>
-              <option value="J">Justificado</option>
-            </select>
-          </div>
-          <div>
-            <label>Conducta</label>
-            <select id="conductaSelect">
-              <option value="E">Excelente</option>
-              <option value="B">Buena</option>
-              <option value="R">Regular</option>
-              <option value="M">Mala</option>
-              <option value="G">Grave</option>
-            </select>
-          </div>
+        <div class="stat">
+          <div class="k">Faltas grupo</div>
+          <div class="v" id="evalAbsences">0</div>
         </div>
-
-        <div class="form-grid" style="margin-top:10px">
-          <div>
-            <button class="success" id="btnGuardarAsistencia">Guardar asistencia</button>
-          </div>
-          <div>
-            <button class="secondary" id="btnGuardarConducta">Guardar conducta</button>
-          </div>
+        <div class="stat">
+          <div class="k">Retardos grupo</div>
+          <div class="v" id="evalTardies">0</div>
         </div>
-
-        <div class="summary-box">
-          <b>Fórmula oficial:</b><br>
-          Calificación final = <b>5</b> + puntos logrados del encuadre.<br><br>
-          <b>Máximos:</b> Actividades 3.0 · Participación 0.5 · Conducta 0.5 · Exámenes 1.0
+        <div class="stat">
+          <div class="k">Alumnos evaluados</div>
+          <div class="v" id="evalStudentsCount">0</div>
         </div>
-      </aside>
+      </div>
 
-      <main class="panel">
-        <div class="tabs">
-          <button class="tab-btn active" data-tab="tabResultados">Resultados</button>
-          <button class="tab-btn" data-tab="tabDetalle">Detalle del alumno</button>
-        </div>
-
-        <div class="tab-content active" id="tabResultados">
-          <div class="section-title">
-            <h2>📊 Resultados del grupo</h2>
-            <span class="small-note" id="grupoActualLabel">Grupo actual</span>
-          </div>
-
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Alumno</th>
-                  <th>Actividades</th>
-                  <th>Exámenes</th>
-                  <th>Faltas</th>
-                  <th>Retardos</th>
-                  <th>Conducta</th>
-                  <th>Participación</th>
-                  <th>Conducta pts</th>
-                  <th>Extra</th>
-                  <th>Final</th>
-                </tr>
-              </thead>
-              <tbody id="tablaResultados"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="tab-content" id="tabDetalle">
-          <div class="section-title">
-            <h2>📝 Historial del alumno</h2>
-            <span class="small-note">Registro individual</span>
-          </div>
-
-          <div id="detalleAlumno" class="summary-box">
-            Selecciona un alumno para ver sus actividades, exámenes y resumen.
-          </div>
-        </div>
-      </main>
+      <div class="table-wrap" style="margin-top:14px">
+        <table class="eval-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Alumno</th>
+              <th>Act. prom.</th>
+              <th>Ex. prom.</th>
+              <th>Faltas</th>
+              <th>Retardos</th>
+              <th>Part.</th>
+              <th>Cond.</th>
+              <th>Extra</th>
+              <th>Final</th>
+            </tr>
+          </thead>
+          <tbody id="evalTbody"></tbody>
+        </table>
+      </div>
     </section>
-
-    <div class="footer-space"></div>
   </div>
+</main>
 
-  <script>
-    const STORAGE_KEY = "aula_lumen_grade_system_v2";
+<script>
+  const STORAGE_KEY = "pase_lista_asistencia_conducta_v3";
+  const EVAL_STORAGE_KEY = "pase_lista_evaluacion_v3";
 
-    const MAX_EXTRA = {
-      actividades: 3.0,
-      participacion: 0.5,
-      conducta: 0.5,
-      examenes: 1.0
+  const MAX_EXTRA = {
+    actividades: 3.0,
+    participacion: 0.5,
+    conducta: 0.5,
+    examenes: 1.0
+  };
+
+  const state = {
+    students: [],
+    sessionRows: []
+  };
+
+  let evalData = JSON.parse(localStorage.getItem(EVAL_STORAGE_KEY) || "{}");
+
+  const dateInput = document.getElementById("dateInput");
+  const gradeSelect = document.getElementById("gradeSelect");
+  const groupSelect = document.getElementById("groupSelect");
+  const shiftSelect = document.getElementById("shiftSelect");
+  const subjectInput = document.getElementById("subjectInput");
+  const groupKeyPreview = document.getElementById("groupKeyPreview");
+  const monthInput = document.getElementById("monthInput");
+  const searchInput = document.getElementById("searchInput");
+  const filterStatus = document.getElementById("filterStatus");
+  const tbody = document.getElementById("tbody");
+  const namesTextarea = document.getElementById("namesTextarea");
+  const saveIndicator = document.getElementById("saveIndicator");
+  const summaryTop = document.getElementById("summaryTop");
+  const summaryBottom = document.getElementById("summaryBottom");
+  const csvFile = document.getElementById("csvFile");
+
+  const evalDateInput = document.getElementById("evalDateInput");
+  const evalTypeSelect = document.getElementById("evalTypeSelect");
+  const evalStudentSelect = document.getElementById("evalStudentSelect");
+  const evalScoreInput = document.getElementById("evalScoreInput");
+  const evalTbody = document.getElementById("evalTbody");
+  const evalAvgGroup = document.getElementById("evalAvgGroup");
+  const evalAbsences = document.getElementById("evalAbsences");
+  const evalTardies = document.getElementById("evalTardies");
+  const evalStudentsCount = document.getElementById("evalStudentsCount");
+
+  function todayISO(){
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth()+1).padStart(2,"0");
+    const day = String(d.getDate()).padStart(2,"0");
+    return `${y}-${m}-${day}`;
+  }
+
+  function currentMonthISO(){
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth()+1).padStart(2,"0");
+    return `${y}-${m}`;
+  }
+
+  if(!dateInput.value) dateInput.value = todayISO();
+  if(!evalDateInput.value) evalDateInput.value = todayISO();
+  if(!monthInput.value) monthInput.value = currentMonthISO();
+
+  function setSavedStatus(text = "💾 Listo"){
+    saveIndicator.textContent = text;
+  }
+
+  function touchSaveStatus(){
+    setSavedStatus("💾 Guardado");
+    setTimeout(() => setSavedStatus("💾 Listo"), 900);
+  }
+
+  function groupKey(){
+    return `${gradeSelect.value}-${groupSelect.value}-${shiftSelect.value}`;
+  }
+
+  function sessionKey(){
+    return `${dateInput.value}__${gradeSelect.value}__${groupSelect.value}__${shiftSelect.value}`;
+  }
+
+  function updateGroupPreview(){
+    groupKeyPreview.value = groupKey();
+  }
+
+  function getSessions(){
+    try{
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
+    }catch{
+      return {};
+    }
+  }
+
+  function saveSessions(data){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    touchSaveStatus();
+  }
+
+  function saveEvalData(){
+    localStorage.setItem(EVAL_STORAGE_KEY, JSON.stringify(evalData));
+    touchSaveStatus();
+  }
+
+  function createRow(name){
+    return {
+      id: Math.random().toString(36).slice(2),
+      name: name.trim(),
+      status: "",
+      conduct: "B",
+      notes: ""
     };
+  }
 
-    let alumnos = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+  function getCurrentEvalKey(){
+    return `${gradeSelect.value}__${groupSelect.value}__${shiftSelect.value}`;
+  }
 
-    const gradoFiltro = document.getElementById("gradoFiltro");
-    const grupoFiltro = document.getElementById("grupoFiltro");
-    const listaMasiva = document.getElementById("listaMasiva");
-    const alumnoSelect = document.getElementById("alumnoSelect");
-    const tipoRegistro = document.getElementById("tipoRegistro");
-    const fechaRegistro = document.getElementById("fechaRegistro");
-    const valorRegistro = document.getElementById("valorRegistro");
-    const asistenciaSelect = document.getElementById("asistenciaSelect");
-    const conductaSelect = document.getElementById("conductaSelect");
-    const tablaResultados = document.getElementById("tablaResultados");
-    const detalleAlumno = document.getElementById("detalleAlumno");
-    const grupoActualLabel = document.getElementById("grupoActualLabel");
+  function ensureEvalGroup(){
+    const key = getCurrentEvalKey();
+    if(!evalData[key]) evalData[key] = {};
+    return evalData[key];
+  }
 
-    const statAlumnos = document.getElementById("statAlumnos");
-    const statPromedio = document.getElementById("statPromedio");
-    const statFaltas = document.getElementById("statFaltas");
-    const statRetardos = document.getElementById("statRetardos");
+  function loadCurrentSession(){
+    const all = getSessions();
+    const key = sessionKey();
+    const saved = all[key];
 
-    function saveData(){
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(alumnos));
+    if(saved){
+      state.students = saved.students || [];
+      state.sessionRows = saved.rows || [];
+    }else{
+      state.sessionRows = state.students.map(name => createRow(name));
     }
 
-    function hoyISO(){
-      const d = new Date();
-      const y = d.getFullYear();
-      const m = String(d.getMonth() + 1).padStart(2, "0");
-      const day = String(d.getDate()).padStart(2, "0");
-      return `${y}-${m}-${day}`;
-    }
+    syncEvalStudents();
+    renderTable();
+    renderEvalPanel();
+  }
 
-    fechaRegistro.value = hoyISO();
+  function saveCurrentSession(){
+    const all = getSessions();
+    all[sessionKey()] = {
+      date: dateInput.value,
+      grade: gradeSelect.value,
+      group: groupSelect.value,
+      shift: shiftSelect.value,
+      subject: subjectInput.value || "",
+      students: state.students,
+      rows: state.sessionRows
+    };
+    saveSessions(all);
+    renderEvalPanel();
+  }
 
-    function clamp(n, min, max){
-      return Math.max(min, Math.min(max, n));
-    }
+  function parseTextareaNames(raw){
+    const lines = raw.split("\n").map(x => x.trim()).filter(Boolean);
+    const currentGrade = gradeSelect.value.replace("°","");
+    const currentGroup = groupSelect.value.toUpperCase();
 
-    function promedio(arr){
-      if(!arr || !arr.length) return 0;
-      return arr.reduce((a,b)=>a + Number(b), 0) / arr.length;
-    }
+    const parsed = [];
+    const byGroup = [];
 
-    function alumnosFiltrados(){
-      return alumnos.filter(a => a.grado === gradoFiltro.value && a.grupo === grupoFiltro.value);
-    }
-
-    function calcularParticipacion(a){
-      const totalClases = Math.max(a.asistencias.length, 1);
-      const faltas = a.asistencias.filter(x => x.tipo === "F").length;
-      const retardos = a.asistencias.filter(x => x.tipo === "R").length;
-
-      const penalizacion = (faltas * 1) + (retardos * 0.5);
-      const proporcion = clamp(1 - (penalizacion / totalClases), 0, 1);
-      return +(MAX_EXTRA.participacion * proporcion).toFixed(2);
-    }
-
-    function calcularConductaPuntos(a){
-      let puntos = MAX_EXTRA.conducta;
-      a.conductas.forEach(c => {
-        if(c.tipo === "R") puntos -= 0.10;
-        else if(c.tipo === "M") puntos -= 0.20;
-        else if(c.tipo === "G") puntos -= 0.30;
-      });
-      return +clamp(puntos, 0, MAX_EXTRA.conducta).toFixed(2);
-    }
-
-    function calcularActividadesPuntos(a){
-      const prom = promedio(a.actividades.map(x => Number(x.valor)));
-      return +((clamp(prom, 0, 100) / 100) * MAX_EXTRA.actividades).toFixed(2);
-    }
-
-    function calcularExamenesPuntos(a){
-      const prom = promedio(a.examenes.map(x => Number(x.valor)));
-      return +((clamp(prom, 0, 100) / 100) * MAX_EXTRA.examenes).toFixed(2);
-    }
-
-    function calcularFinal(a){
-      const act = calcularActividadesPuntos(a);
-      const exa = calcularExamenesPuntos(a);
-      const par = calcularParticipacion(a);
-      const con = calcularConductaPuntos(a);
-      const extra = +(act + exa + par + con).toFixed(2);
-      const final = +(5 + extra).toFixed(1);
-
-      return {
-        act, exa, par, con, extra,
-        final: clamp(final, 5, 10)
-      };
-    }
-
-    function crearAlumno(nombre, grado, grupo){
-      return {
-        id: Date.now().toString(36) + Math.random().toString(36).slice(2,7),
-        nombre,
-        grado,
-        grupo,
-        actividades: [],
-        examenes: [],
-        asistencias: [],
-        conductas: []
-      };
-    }
-
-    function cargarListaMasiva(){
-      const texto = listaMasiva.value.trim();
-      if(!texto){
-        alert("Pega una lista primero.");
-        return;
+    lines.forEach(line => {
+      const match = line.match(/^([123])([A-Z])\s+(.+)$/i);
+      if(match){
+        byGroup.push({
+          grade: `${match[1]}°`,
+          group: match[2].toUpperCase(),
+          name: match[3].trim()
+        });
+      }else{
+        parsed.push(line);
       }
+    });
 
-      const lineas = texto.split("\n").map(x => x.trim()).filter(Boolean);
-      let agregados = 0;
-
-      lineas.forEach(linea => {
-        const partes = linea.split(/\s+/);
-        if(partes.length < 2) return;
-
-        const clave = partes[0].toUpperCase();
-        const match = clave.match(/^([123])([A-Z])$/);
-        if(!match) return;
-
-        const grado = match[1];
-        const grupo = match[2];
-        const nombre = partes.slice(1).join(" ").trim();
-        if(!nombre) return;
-
-        const yaExiste = alumnos.some(a =>
-          a.grado === grado &&
-          a.grupo === grupo &&
-          a.nombre.toLowerCase() === nombre.toLowerCase()
-        );
-
-        if(!yaExiste){
-          alumnos.push(crearAlumno(nombre, grado, grupo));
-          agregados++;
-        }
-      });
-
-      saveData();
-      renderAll();
-      alert(`Se cargaron ${agregados} alumnos nuevos.`);
+    if(byGroup.length){
+      return byGroup
+        .filter(x => x.grade.replace("°","") === currentGrade && x.group === currentGroup)
+        .map(x => x.name);
     }
 
-    function ponerEjemplo(){
-      listaMasiva.value = `1A Ana López
+    return parsed;
+  }
+
+  function loadFromTextarea(){
+    const names = parseTextareaNames(namesTextarea.value);
+    if(!names.length){
+      alert("No encontré alumnos para el grupo actual. Si pegas claves como 1A o 3H, asegúrate de estar parada en ese grupo.");
+      return;
+    }
+
+    state.students = names;
+    state.sessionRows = names.map(name => createRow(name));
+    saveCurrentSession();
+    syncEvalStudents();
+    renderTable();
+    renderEvalPanel();
+  }
+
+  function fillDemo(){
+    namesTextarea.value = `1A Ana López
 1A Bruno García
-1B Camila Pérez
-2F Daniela Ruiz
-2G Esteban Torres
-3H Fernanda Díaz`;
-    }
+1A Camila Hernández
+1B Diego Torres
+2F Elena Díaz
+3H Fernanda Ruiz`;
+  }
 
-    function borrarGrupoActual(){
-      const grado = gradoFiltro.value;
-      const grupo = grupoFiltro.value;
-      const filtrados = alumnos.filter(a => !(a.grado === grado && a.grupo === grupo));
-      if(filtrados.length === alumnos.length){
-        alert("Ese grupo no tiene alumnos registrados.");
-        return;
-      }
-      if(!confirm(`Se borrará todo el grupo ${grado}° ${grupo}.`)) return;
-      alumnos = filtrados;
-      saveData();
-      renderAll();
-    }
+  function allPresent(){
+    state.sessionRows.forEach(r => r.status = "P");
+    saveCurrentSession();
+    renderTable();
+  }
 
-    function llenarSelectAlumno(){
-      const filtrados = alumnosFiltrados();
-      alumnoSelect.innerHTML = "";
+  function clearDay(){
+    state.sessionRows.forEach(r => {
+      r.status = "";
+      r.conduct = "B";
+      r.notes = "";
+    });
+    saveCurrentSession();
+    renderTable();
+  }
 
-      if(!filtrados.length){
-        alumnoSelect.innerHTML = `<option value="">Sin alumnos</option>`;
-        return;
-      }
+  function newEmptySession(){
+    state.sessionRows = state.students.map(name => createRow(name));
+    renderTable();
+  }
 
-      filtrados.forEach(a => {
-        const op = document.createElement("option");
-        op.value = a.id;
-        op.textContent = a.nombre;
-        alumnoSelect.appendChild(op);
-      });
-    }
+  function resetAll(){
+    if(!confirm("Esto borrará todas las sesiones guardadas y la evaluación de este equipo.")) return;
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(EVAL_STORAGE_KEY);
+    state.students = [];
+    state.sessionRows = [];
+    evalData = {};
+    renderTable();
+    renderEvalPanel();
+    touchSaveStatus();
+  }
 
-    function getAlumnoSeleccionado(){
-      const id = alumnoSelect.value;
-      return alumnos.find(a => a.id === id);
-    }
+  function escapeHtml(text){
+    return String(text)
+      .replaceAll("&","&amp;")
+      .replaceAll("<","&lt;")
+      .replaceAll(">","&gt;")
+      .replaceAll('"',"&quot;")
+      .replaceAll("'","&#39;");
+  }
 
-    function guardarRegistro(){
-      const alumno = getAlumnoSeleccionado();
-      if(!alumno){
-        alert("Selecciona un alumno.");
-        return;
-      }
+  function rowMatches(row){
+    const q = searchInput.value.trim().toLowerCase();
+    const filter = filterStatus.value;
+    const matchesName = !q || row.name.toLowerCase().includes(q);
+    const matchesStatus = filter === "ALL" || row.status === filter;
+    return matchesName && matchesStatus;
+  }
 
-      const tipo = tipoRegistro.value;
-      const fecha = fechaRegistro.value || hoyISO();
-      const valor = Number(valorRegistro.value);
+  function renderTable(){
+    const filtered = state.sessionRows.filter(rowMatches);
+    tbody.innerHTML = "";
 
-      if(Number.isNaN(valor) || valor < 0 || valor > 100){
-        alert("Escribe una calificación válida de 0 a 100.");
-        return;
-      }
-
-      const item = { fecha, valor };
-
-      if(tipo === "actividad") alumno.actividades.push(item);
-      else alumno.examenes.push(item);
-
-      valorRegistro.value = "";
-      saveData();
-      renderAll();
-    }
-
-    function guardarAsistencia(){
-      const alumno = getAlumnoSeleccionado();
-      if(!alumno){
-        alert("Selecciona un alumno.");
-        return;
-      }
-
-      alumno.asistencias.push({
-        fecha: hoyISO(),
-        tipo: asistenciaSelect.value
-      });
-
-      saveData();
-      renderAll();
-    }
-
-    function guardarConducta(){
-      const alumno = getAlumnoSeleccionado();
-      if(!alumno){
-        alert("Selecciona un alumno.");
-        return;
-      }
-
-      alumno.conductas.push({
-        fecha: hoyISO(),
-        tipo: conductaSelect.value
-      });
-
-      saveData();
-      renderAll();
-    }
-
-    function conductaTexto(tipo){
-      return {
-        E:"Excelente",
-        B:"Buena",
-        R:"Regular",
-        M:"Mala",
-        G:"Grave"
-      }[tipo] || tipo;
-    }
-
-    function renderTabla(){
-      const filtrados = alumnosFiltrados();
-      grupoActualLabel.textContent = `Grupo ${gradoFiltro.value}° ${grupoFiltro.value}`;
-
-      if(!filtrados.length){
-        tablaResultados.innerHTML = `
-          <tr>
-            <td colspan="11" class="muted">No hay alumnos en este grupo.</td>
-          </tr>
-        `;
-        return;
-      }
-
-      tablaResultados.innerHTML = "";
-
-      filtrados.forEach((a, i) => {
-        const c = calcularFinal(a);
-        const promAct = promedio(a.actividades.map(x => Number(x.valor))).toFixed(1);
-        const promExa = promedio(a.examenes.map(x => Number(x.valor))).toFixed(1);
-        const faltas = a.asistencias.filter(x => x.tipo === "F").length;
-        const retardos = a.asistencias.filter(x => x.tipo === "R").length;
-        const ultimaConducta = a.conductas.length ? a.conductas[a.conductas.length - 1].tipo : "—";
-
-        let cls = "s-low";
-        if(c.final >= 8) cls = "s-high";
-        else if(c.final >= 6.5) cls = "s-mid";
-
-        const tr = document.createElement("tr");
-        tr.innerHTML = `
-          <td>${i + 1}</td>
-          <td>
-            <div class="name">${a.nombre}</div>
-            <div class="mini">${a.actividades.length} actividades · ${a.examenes.length} exámenes</div>
-          </td>
-          <td>${promAct}</td>
-          <td>${promExa}</td>
-          <td><span class="pill bad">${faltas}</span></td>
-          <td><span class="pill warn">${retardos}</span></td>
-          <td><span class="pill info">${ultimaConducta}</span></td>
-          <td>${c.par.toFixed(2)}</td>
-          <td>${c.con.toFixed(2)}</td>
-          <td>${c.extra.toFixed(2)}</td>
-          <td><span class="score ${cls}">${c.final.toFixed(1)}</span></td>
-        `;
-        tablaResultados.appendChild(tr);
-      });
-    }
-
-    function renderDetalleAlumno(){
-      const alumno = getAlumnoSeleccionado();
-
-      if(!alumno){
-        detalleAlumno.innerHTML = "Selecciona un alumno para ver su información.";
-        return;
-      }
-
-      const c = calcularFinal(alumno);
-      const faltas = alumno.asistencias.filter(x => x.tipo === "F").length;
-      const retardos = alumno.asistencias.filter(x => x.tipo === "R").length;
-
-      const actividades = alumno.actividades.length
-        ? alumno.actividades.map(x => `• ${x.fecha}: ${x.valor}`).join("<br>")
-        : "Sin actividades registradas";
-
-      const examenes = alumno.examenes.length
-        ? alumno.examenes.map(x => `• ${x.fecha}: ${x.valor}`).join("<br>")
-        : "Sin exámenes registrados";
-
-      const conductas = alumno.conductas.length
-        ? alumno.conductas.map(x => `• ${x.fecha}: ${conductaTexto(x.tipo)}`).join("<br>")
-        : "Sin conductas registradas";
-
-      detalleAlumno.innerHTML = `
-        <div style="display:grid;grid-template-columns:1.2fr .8fr;gap:14px">
-          <div>
-            <h3 style="margin:0 0 10px 0">${alumno.nombre}</h3>
-            <div class="muted" style="margin-bottom:10px">Grupo ${alumno.grado}° ${alumno.grupo}</div>
-
-            <div style="margin-bottom:12px">
-              <b>Actividades</b><br>
-              <div class="muted" style="margin-top:6px">${actividades}</div>
-            </div>
-
-            <div style="margin-bottom:12px">
-              <b>Exámenes</b><br>
-              <div class="muted" style="margin-top:6px">${examenes}</div>
-            </div>
-
-            <div>
-              <b>Conducta</b><br>
-              <div class="muted" style="margin-top:6px">${conductas}</div>
-            </div>
-          </div>
-
-          <div>
-            <div class="stat" style="margin-bottom:10px">
-              <div class="k">Calificación final</div>
-              <div class="v">${c.final.toFixed(1)}</div>
-            </div>
-
-            <div class="stat" style="margin-bottom:10px">
-              <div class="k">Base oficial</div>
-              <div class="v">5.0</div>
-            </div>
-
-            <div class="stat" style="margin-bottom:10px">
-              <div class="k">Puntos extra</div>
-              <div class="v">${c.extra.toFixed(2)}</div>
-            </div>
-
-            <div class="summary-box" style="margin-top:0">
-              <b>Desglose</b><br>
-              Actividades: ${c.act.toFixed(2)}<br>
-              Exámenes: ${c.exa.toFixed(2)}<br>
-              Participación: ${c.par.toFixed(2)}<br>
-              Conducta: ${c.con.toFixed(2)}<br><br>
-              Faltas: ${faltas}<br>
-              Retardos: ${retardos}
-            </div>
-          </div>
-        </div>
+    filtered.forEach((row, idx) => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${idx + 1}</td>
+        <td><div class="student-name">${escapeHtml(row.name)}</div></td>
+        <td>
+          <select class="mini-select status-select" data-id="${row.id}">
+            <option value="" ${row.status===""?"selected":""}>Selecciona</option>
+            <option value="P" ${row.status==="P"?"selected":""}>Presente</option>
+            <option value="F" ${row.status==="F"?"selected":""}>Falta</option>
+            <option value="R" ${row.status==="R"?"selected":""}>Retardo</option>
+            <option value="J" ${row.status==="J"?"selected":""}>Justificado</option>
+          </select>
+        </td>
+        <td>
+          <select class="mini-select conduct-select" data-id="${row.id}">
+            <option value="E" ${row.conduct==="E"?"selected":""}>E Excelente</option>
+            <option value="B" ${row.conduct==="B"?"selected":""}>B Buena</option>
+            <option value="R" ${row.conduct==="R"?"selected":""}>R Regular</option>
+            <option value="M" ${row.conduct==="M"?"selected":""}>M Mala</option>
+            <option value="G" ${row.conduct==="G"?"selected":""}>G Grave</option>
+          </select>
+        </td>
+        <td>
+          <input class="mini-input notes-input" data-id="${row.id}" type="text" value="${escapeHtml(row.notes || "")}" placeholder="Observación">
+        </td>
       `;
-    }
+      tbody.appendChild(tr);
+    });
 
-    function renderStats(){
-      const filtrados = alumnosFiltrados();
-      statAlumnos.textContent = filtrados.length;
-
-      if(!filtrados.length){
-        statPromedio.textContent = "0.0";
-        statFaltas.textContent = "0";
-        statRetardos.textContent = "0";
-        return;
-      }
-
-      const promedioGrupo = filtrados.reduce((acc, a) => acc + calcularFinal(a).final, 0) / filtrados.length;
-      const faltas = filtrados.reduce((acc, a) => acc + a.asistencias.filter(x => x.tipo === "F").length, 0);
-      const retardos = filtrados.reduce((acc, a) => acc + a.asistencias.filter(x => x.tipo === "R").length, 0);
-
-      statPromedio.textContent = promedioGrupo.toFixed(1);
-      statFaltas.textContent = faltas;
-      statRetardos.textContent = retardos;
-    }
-
-    function renderAll(){
-      llenarSelectAlumno();
-      renderTabla();
-      renderDetalleAlumno();
-      renderStats();
-      saveData();
-    }
-
-    document.getElementById("btnCargarLista").addEventListener("click", cargarListaMasiva);
-    document.getElementById("btnEjemplo").addEventListener("click", ponerEjemplo);
-    document.getElementById("btnBorrarGrupo").addEventListener("click", borrarGrupoActual);
-    document.getElementById("btnGuardarRegistro").addEventListener("click", guardarRegistro);
-    document.getElementById("btnGuardarAsistencia").addEventListener("click", guardarAsistencia);
-    document.getElementById("btnGuardarConducta").addEventListener("click", guardarConducta);
-
-    gradoFiltro.addEventListener("change", renderAll);
-    grupoFiltro.addEventListener("change", renderAll);
-    alumnoSelect.addEventListener("change", renderDetalleAlumno);
-
-    document.querySelectorAll(".tab-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-        document.querySelectorAll(".tab-content").forEach(c => c.classList.remove("active"));
-        btn.classList.add("active");
-        document.getElementById(btn.dataset.tab).classList.add("active");
+    document.querySelectorAll(".status-select").forEach(sel => {
+      sel.addEventListener("change", e => {
+        const row = state.sessionRows.find(r => r.id === e.target.dataset.id);
+        if(row){
+          row.status = e.target.value;
+          saveCurrentSession();
+          renderSummary();
+          renderEvalPanel();
+        }
       });
     });
 
-    renderAll();
-  </script>
+    document.querySelectorAll(".conduct-select").forEach(sel => {
+      sel.addEventListener("change", e => {
+        const row = state.sessionRows.find(r => r.id === e.target.dataset.id);
+        if(row){
+          row.conduct = e.target.value;
+          saveCurrentSession();
+          renderSummary();
+          persistConductIntoEval(row.name, row.conduct);
+          renderEvalPanel();
+        }
+      });
+    });
+
+    document.querySelectorAll(".notes-input").forEach(inp => {
+      inp.addEventListener("input", e => {
+        const row = state.sessionRows.find(r => r.id === e.target.dataset.id);
+        if(row){
+          row.notes = e.target.value;
+          saveCurrentSession();
+        }
+      });
+    });
+
+    renderSummary();
+  }
+
+  function renderSummary(){
+    const total = state.sessionRows.length;
+    const p = state.sessionRows.filter(x => x.status==="P").length;
+    const f = state.sessionRows.filter(x => x.status==="F").length;
+    const r = state.sessionRows.filter(x => x.status==="R").length;
+    const j = state.sessionRows.filter(x => x.status==="J").length;
+
+    summaryTop.textContent = `${total} alumnos`;
+    summaryBottom.textContent = `Presentes: ${p} · Faltas: ${f} · Retardos: ${r} · Justificados: ${j}`;
+  }
+
+  function persistAttendanceIntoEval(){
+    const group = ensureEvalGroup();
+    state.sessionRows.forEach(row => {
+      if(!group[row.name]){
+        group[row.name] = { actividades: [], examenes: [], asistencias: [], conductas: [] };
+      }
+
+      const exists = group[row.name].asistencias.some(a => a.fecha === dateInput.value);
+      if(!exists){
+        group[row.name].asistencias.push({
+          fecha: dateInput.value,
+          tipo: row.status || "P"
+        });
+      }else{
+        const item = group[row.name].asistencias.find(a => a.fecha === dateInput.value);
+        item.tipo = row.status || "P";
+      }
+    });
+    saveEvalData();
+  }
+
+  function persistConductIntoEval(studentName, conduct){
+    const group = ensureEvalGroup();
+    if(!group[studentName]){
+      group[studentName] = { actividades: [], examenes: [], asistencias: [], conductas: [] };
+    }
+
+    const exists = group[studentName].conductas.some(c => c.fecha === dateInput.value);
+    if(!exists){
+      group[studentName].conductas.push({ fecha: dateInput.value, tipo: conduct });
+    }else{
+      const item = group[studentName].conductas.find(c => c.fecha === dateInput.value);
+      item.tipo = conduct;
+    }
+    saveEvalData();
+  }
+
+  function syncEvalStudents(){
+    const group = ensureEvalGroup();
+
+    state.students.forEach(name => {
+      if(!group[name]){
+        group[name] = { actividades: [], examenes: [], asistencias: [], conductas: [] };
+      }
+    });
+
+    evalStudentSelect.innerHTML = "";
+    state.students.forEach(name => {
+      const op = document.createElement("option");
+      op.value = name;
+      op.textContent = name;
+      evalStudentSelect.appendChild(op);
+    });
+
+    saveEvalData();
+  }
+
+  function clamp(n, min, max){
+    return Math.max(min, Math.min(max, n));
+  }
+
+  function average(arr){
+    if(!arr.length) return 0;
+    return arr.reduce((a,b)=>a+b,0) / arr.length;
+  }
+
+  function calcParticipation(student){
+    const totalClases = Math.max(student.asistencias.length, 1);
+    const faltas = student.asistencias.filter(x => x.tipo === "F").length;
+    const retardos = student.asistencias.filter(x => x.tipo === "R").length;
+    const penalizacion = (faltas * 1) + (retardos * 0.5);
+    const proporcion = clamp(1 - (penalizacion / totalClases), 0, 1);
+    return +(MAX_EXTRA.participacion * proporcion).toFixed(2);
+  }
+
+  function calcConduct(student){
+    let pts = MAX_EXTRA.conducta;
+    student.conductas.forEach(c => {
+      if(c.tipo === "R") pts -= 0.10;
+      else if(c.tipo === "M") pts -= 0.20;
+      else if(c.tipo === "G") pts -= 0.30;
+    });
+    return +clamp(pts, 0, MAX_EXTRA.conducta).toFixed(2);
+  }
+
+  function calcActivities(student){
+    const avg = average(student.actividades.map(x => Number(x.valor)));
+    return +((clamp(avg,0,100)/100) * MAX_EXTRA.actividades).toFixed(2);
+  }
+
+  function calcExams(student){
+    const avg = average(student.examenes.map(x => Number(x.valor)));
+    return +((clamp(avg,0,100)/100) * MAX_EXTRA.examenes).toFixed(2);
+  }
+
+  function calcFinal(student){
+    const act = calcActivities(student);
+    const exa = calcExams(student);
+    const part = calcParticipation(student);
+    const cond = calcConduct(student);
+    const extra = +(act + exa + part + cond).toFixed(2);
+    const final = +(5 + extra).toFixed(1);
+    return {act, exa, part, cond, extra, final: clamp(final, 5, 10)};
+  }
+
+  function saveEvalRecord(){
+    const studentName = evalStudentSelect.value;
+    const type = evalTypeSelect.value;
+    const fecha = evalDateInput.value || todayISO();
+    const valor = Number(evalScoreInput.value);
+
+    if(!studentName){
+      alert("Selecciona un alumno.");
+      return;
+    }
+    if(Number.isNaN(valor) || valor < 0 || valor > 100){
+      alert("Escribe una calificación válida de 0 a 100.");
+      return;
+    }
+
+    const group = ensureEvalGroup();
+    if(!group[studentName]){
+      group[studentName] = { actividades: [], examenes: [], asistencias: [], conductas: [] };
+    }
+
+    const item = { fecha, valor };
+    if(type === "actividad") group[studentName].actividades.push(item);
+    else group[studentName].examenes.push(item);
+
+    evalScoreInput.value = "";
+    saveEvalData();
+    renderEvalPanel();
+  }
+
+  function renderEvalPanel(){
+    persistAttendanceIntoEval();
+
+    const key = getCurrentEvalKey();
+    const group = evalData[key] || {};
+    const names = Object.keys(group);
+
+    evalTbody.innerHTML = "";
+
+    let totalFinal = 0;
+    let totalFaltas = 0;
+    let totalRetardos = 0;
+
+    names.forEach((name, i) => {
+      const student = group[name];
+      const result = calcFinal(student);
+      const avgAct = average(student.actividades.map(x => Number(x.valor))).toFixed(1);
+      const avgExa = average(student.examenes.map(x => Number(x.valor))).toFixed(1);
+      const faltas = student.asistencias.filter(x => x.tipo === "F").length;
+      const retardos = student.asistencias.filter(x => x.tipo === "R").length;
+
+      totalFinal += result.final;
+      totalFaltas += faltas;
+      totalRetardos += retardos;
+
+      let scoreClass = "score-low";
+      if(result.final >= 8) scoreClass = "score-high";
+      else if(result.final >= 6.5) scoreClass = "score-mid";
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${i + 1}</td>
+        <td><span class="student-name">${escapeHtml(name)}</span></td>
+        <td>${avgAct}</td>
+        <td>${avgExa}</td>
+        <td><span class="status-badge b-bad">${faltas}</span></td>
+        <td><span class="status-badge b-warn">${retardos}</span></td>
+        <td>${result.part.toFixed(2)}</td>
+        <td>${result.cond.toFixed(2)}</td>
+        <td>${result.extra.toFixed(2)}</td>
+        <td><span class="score-pill ${scoreClass}">${result.final.toFixed(1)}</span></td>
+      `;
+      evalTbody.appendChild(tr);
+    });
+
+    evalStudentsCount.textContent = names.length;
+    evalAvgGroup.textContent = names.length ? (totalFinal / names.length).toFixed(1) : "0.0";
+    evalAbsences.textContent = totalFaltas;
+    evalTardies.textContent = totalRetardos;
+  }
+
+  function exportCsvDay(){
+    if(!state.sessionRows.length){
+      alert("No hay datos para exportar.");
+      return;
+    }
+
+    const rows = [
+      ["Fecha","Grado","Grupo","Turno","Alumno","Asistencia","Conducta","Notas"]
+    ];
+
+    state.sessionRows.forEach(r => {
+      rows.push([
+        dateInput.value,
+        gradeSelect.value,
+        groupSelect.value,
+        shiftSelect.value,
+        r.name,
+        r.status,
+        r.conduct,
+        r.notes || ""
+      ]);
+    });
+
+    const csv = rows.map(row =>
+      row.map(v => `"${String(v ?? "").replace(/"/g,'""')}"`).join(",")
+    ).join("\n");
+
+    const blob = new Blob([csv], {type:"text/csv;charset=utf-8;"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `asistencia_${dateInput.value}_${gradeSelect.value}_${groupSelect.value}.csv`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  function exportMonthlyExcel(){
+    const month = monthInput.value;
+    if(!month){
+      alert("Selecciona un mes.");
+      return;
+    }
+
+    const all = getSessions();
+    const rows = [[
+      "Fecha","Grado","Grupo","Turno","Alumno","Asistencia","Conducta","Notas"
+    ]];
+
+    Object.values(all).forEach(session => {
+      if(
+        session.grade === gradeSelect.value &&
+        session.group === groupSelect.value &&
+        session.shift === shiftSelect.value &&
+        String(session.date || "").startsWith(month)
+      ){
+        (session.rows || []).forEach(r => {
+          rows.push([
+            session.date,
+            session.grade,
+            session.group,
+            session.shift,
+            r.name,
+            r.status,
+            r.conduct,
+            r.notes || ""
+          ]);
+        });
+      }
+    });
+
+    if(rows.length === 1){
+      alert("No hay registros de ese mes para este grupo.");
+      return;
+    }
+
+    const ws = XLSX.utils.aoa_to_sheet(rows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Asistencia");
+    XLSX.writeFile(wb, `asistencia_mensual_${month}_${gradeSelect.value}_${groupSelect.value}.xlsx`);
+  }
+
+  function loadCsv(){
+    const file = csvFile.files?.[0];
+    if(!file){
+      alert("Selecciona un archivo CSV.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e){
+      const text = String(e.target.result || "");
+      const lines = text.split(/\r?\n/).map(x => x.trim()).filter(Boolean);
+      if(!lines.length){
+        alert("El CSV está vacío.");
+        return;
+      }
+
+      const dataLines = lines.slice(1);
+      const names = dataLines.map(line => line.split(",")[0]?.replace(/^"|"$/g,"").trim()).filter(Boolean);
+
+      if(!names.length){
+        alert("No encontré nombres válidos en el CSV.");
+        return;
+      }
+
+      state.students = names;
+      state.sessionRows = names.map(name => createRow(name));
+      saveCurrentSession();
+      syncEvalStudents();
+      renderTable();
+      renderEvalPanel();
+    };
+    reader.readAsText(file, "utf-8");
+  }
+
+  document.getElementById("loadSessionBtn").addEventListener("click", loadCurrentSession);
+  document.getElementById("newSessionBtn").addEventListener("click", newEmptySession);
+  document.getElementById("allPresentBtn").addEventListener("click", allPresent);
+  document.getElementById("clearDayBtn").addEventListener("click", clearDay);
+  document.getElementById("exportBtn").addEventListener("click", exportCsvDay);
+  document.getElementById("exportMonthlyXlsxBtn").addEventListener("click", exportMonthlyExcel);
+
+  document.getElementById("loadFromTextBtn").addEventListener("click", loadFromTextarea);
+  document.getElementById("demoBtn").addEventListener("click", fillDemo);
+  document.getElementById("loadCsvBtn").addEventListener("click", loadCsv);
+  document.getElementById("saveBtn").addEventListener("click", saveCurrentSession);
+  document.getElementById("resetAllBtn").addEventListener("click", resetAll);
+
+  document.getElementById("saveEvalBtn").addEventListener("click", saveEvalRecord);
+
+  [dateInput, gradeSelect, groupSelect, shiftSelect].forEach(el => {
+    el.addEventListener("change", () => {
+      updateGroupPreview();
+      loadCurrentSession();
+    });
+  });
+
+  [searchInput, filterStatus].forEach(el => {
+    el.addEventListener("input", renderTable);
+    el.addEventListener("change", renderTable);
+  });
+
+  updateGroupPreview();
+  loadCurrentSession();
+</script>
 </body>
 </html>
